@@ -1,0 +1,6 @@
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\bin\Debug\Fraction.dll
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\bin\Debug\Fraction.pdb
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\obj\Debug\FractionLibrary.csproj.CoreCompileInputs.cache
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\obj\Debug\Fraction.dll
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\obj\Debug\Fraction.pdb
+C:\Users\pastu\Documents\Programming projects\ISM\TASK №09\OOP3\Fraction\obj\Debug\FractionLibrary.csprojAssemblyReference.cache
