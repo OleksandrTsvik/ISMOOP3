@@ -118,31 +118,29 @@ namespace FractionLibrary
 
         public static Fraction operator +(Fraction fraction)
         {
-            return fraction;
+            return ReducedFraction(fraction.GetNumerator(), fraction.GetDenominator());
         }
 
         public static Fraction operator -(Fraction fraction)
         {
-            if (fraction.GetNumerator() == 0)
-                return new Fraction(fraction.GetNumerator(), fraction.GetDenominator());
-            return new Fraction(-fraction.GetNumerator(), fraction.GetDenominator());
+            return ReducedFraction(-fraction.GetNumerator(), fraction.GetDenominator());
         }
 
         public static Fraction operator +(Fraction fraction1, Fraction fraction2)
         {
             if (fraction1.GetNumerator() == 0 && fraction2.GetNumerator() == 0)
-                return new Fraction(0, NSK(fraction1.GetDenominator(), fraction2.GetDenominator()));
+                return ReducedFraction(0, NSK(fraction1.GetDenominator(), fraction2.GetDenominator()));
             else if (fraction1.GetNumerator() == 0 && fraction2.GetNumerator() != 0)
-                return new Fraction(fraction2.GetNumerator(), fraction2.GetDenominator());
+                return ReducedFraction(fraction2.GetNumerator(), fraction2.GetDenominator());
             else if (fraction1.GetNumerator() != 0 && fraction2.GetNumerator() == 0)
-                return new Fraction(fraction1.GetNumerator(), fraction1.GetDenominator());
+                return ReducedFraction(fraction1.GetNumerator(), fraction1.GetDenominator());
 
-            return new Fraction(ReductionNumerator(fraction1, fraction2) + ReductionNumerator(fraction2, fraction1), NSK(fraction1.GetDenominator(), fraction2.GetDenominator()));
+            return ReducedFraction(ReductionNumerator(fraction1, fraction2) + ReductionNumerator(fraction2, fraction1), NSK(fraction1.GetDenominator(), fraction2.GetDenominator()));
         }
 
         public static Fraction operator +(Fraction fraction, long x)
         {
-            return new Fraction(fraction.GetNumerator() + x * fraction.GetDenominator(), fraction.GetDenominator());
+            return ReducedFraction(fraction.GetNumerator() + x * fraction.GetDenominator(), fraction.GetDenominator());
         }
 
         public static Fraction operator +(long x, Fraction fraction)
@@ -167,12 +165,12 @@ namespace FractionLibrary
 
         public static Fraction operator *(Fraction fraction1, Fraction fraction2)
         {
-            return new Fraction(fraction1.GetNumerator() * fraction2.GetNumerator(), fraction1.GetDenominator() * fraction2.GetDenominator());
+            return ReducedFraction(fraction1.GetNumerator() * fraction2.GetNumerator(), fraction1.GetDenominator() * fraction2.GetDenominator());
         }
 
         public static Fraction operator *(Fraction fraction, long x)
         {
-            return new Fraction(fraction.GetNumerator() * x, fraction.GetDenominator());
+            return ReducedFraction(fraction.GetNumerator() * x, fraction.GetDenominator());
         }
 
         public static Fraction operator *(long x, Fraction fraction)
@@ -182,17 +180,17 @@ namespace FractionLibrary
 
         public static Fraction operator /(Fraction fraction1, Fraction fraction2)
         {
-            return new Fraction(fraction1.GetNumerator() * fraction2.GetDenominator(), fraction1.GetDenominator() * fraction2.GetNumerator());
+            return ReducedFraction(fraction1.GetNumerator() * fraction2.GetDenominator(), fraction1.GetDenominator() * fraction2.GetNumerator());
         }
 
         public static Fraction operator /(Fraction fraction, long x)
         {
-            return new Fraction(fraction.GetNumerator(), fraction.GetDenominator() * x);
+            return ReducedFraction(fraction.GetNumerator(), fraction.GetDenominator() * x);
         }
 
         public static Fraction operator /(long x, Fraction fraction)
         {
-            return new Fraction(x * fraction.GetDenominator(), fraction.GetNumerator());
+            return ReducedFraction(x * fraction.GetDenominator(), fraction.GetNumerator());
         }
 
         public static bool operator >(Fraction fraction1, Fraction fraction2)
@@ -344,12 +342,21 @@ namespace FractionLibrary
             }
         }
 
+        private static Fraction ReducedFraction(long numerator, long denominator)
+        {
+            if (numerator != denominator)
+            {
+                return new Fraction(numerator / NSD(numerator, denominator), denominator / NSD(numerator, denominator));
+            }
+            return new Fraction(1, 1);
+        }
+
         public override string ToString()
         {
             return $"{Numerator}/{Denominator}";
         }
 
-        private long NSD(long a, long b)
+        private static long NSD(long a, long b)
         {
             if (a == 0 || b == 0)
                 return 1;

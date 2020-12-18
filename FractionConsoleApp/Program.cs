@@ -64,6 +64,12 @@ namespace FractionConsoleApp
             fractions[10] = +fractions[7];
             Console.WriteLine($"fractions[10] = +({fractions[7]}) = {fractions[10]}");
 
+            fractions[10] = new Fraction(15, 30);
+            Console.WriteLine($"fractions[10] = +({fractions[10]}) = {+fractions[10]}");
+
+            fractions[10] = new Fraction("0/3");
+            Console.WriteLine($"fractions[10] = -({fractions[10]}) = {-fractions[10]}");
+
             Console.WriteLine("\n\tБінарні +, –, *, / (для типу Fraction, Fraction):");
             fractions.Add(new Fraction());
             fractions[11] = fractions[1] + fractions[5];
@@ -76,23 +82,19 @@ namespace FractionConsoleApp
             fractions[1] = new Fraction("1/2");
             fractions[5] = new Fraction("1/2");
             fractions[12] = fractions[1] + fractions[5];
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"fractions[12] = {fractions[1]} + {fractions[5]} = {fractions[12]}");
 
             fractions[12] = fractions[1] - fractions[5];
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"fractions[12] = {fractions[1]} - {fractions[5]} = {fractions[12]}");
 
             fractions[1] = new Fraction(0, 3);
             fractions[5] = new Fraction(0, 8);
             fractions[12] = fractions[1] - fractions[5];
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"fractions[12] = {fractions[1]} - {fractions[5]} = {fractions[12]}");
 
             fractions[1] = new Fraction(0, 8);
             fractions[5] = new Fraction(5, 3);
             fractions[12] = fractions[1] - fractions[5];
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"fractions[12] = {fractions[1]} - {fractions[5]} = {fractions[12]}");
 
             Fraction frac = fractions[5] * fractions[6];
@@ -104,29 +106,23 @@ namespace FractionConsoleApp
             Console.WriteLine("\n\tБінарні +, –, *, / (для типу Fraction, long):");
             Console.Write($"fractions[12] = {fractions[12]} + 10 = ");
             fractions[12] = fractions[12] + 10;
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"{fractions[12]}");
 
             Console.Write($"fractions[12] = {fractions[12]} + -10 = ");
             fractions[12] = fractions[12] + -10;
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"{fractions[12]}");
 
             Console.Write($"fractions[12] = {10} + {fractions[12]} = ");
             fractions[12] = 10 + fractions[12];
-            fractions[12].FractionReduction(fractions[12].GetNumerator(), fractions[12].GetDenominator());
             Console.WriteLine($"{fractions[12]}");
 
             fractions[7].SetDenominator(3);
             Console.Write($"fractions[7] = {fractions[7]} - 10 = ");
             fractions[7] = fractions[7] - 10;
-            Console.Write($"{fractions[7]}  =>  ");
-            fractions[7].FractionReduction(fractions[7].GetNumerator(), fractions[7].GetDenominator());
             Console.WriteLine($"{fractions[7]}");
 
             Console.Write($"fractions[7] = 10 - {fractions[7]} = ");
             fractions[7] = 10 - fractions[7];
-            fractions[7].FractionReduction(fractions[7].GetNumerator(), fractions[7].GetDenominator());
             Console.WriteLine($"{fractions[7]}");
 
             frac = fractions[5] * 12;
@@ -153,7 +149,9 @@ namespace FractionConsoleApp
             Console.WriteLine($"{fractions[6]} >= 7.74   -->   {fractions[6] >= 7.74}");
             Console.WriteLine($"8.26 <= {fractions[6]}   -->   {8.26 <= fractions[6]}");
             fractions[6] = new Fraction("1/2");
+            Fraction fract = new Fraction("3/6");
             Console.WriteLine($"{fractions[6]} == 0.5   -->   {fractions[6] == 0.5}");
+            Console.WriteLine($"{fractions[6]} == {fract}   -->   {fractions[6] == fract}");
             Console.WriteLine($"{fractions[6]} != 0.5   -->   {fractions[6] != 0.5}");
             Console.WriteLine($"0.5 != {fractions[6]}   -->   {0.5 != fractions[6]}");
             Console.WriteLine($"0.5 == {fractions[6]}   -->   {0.5 == fractions[6]}");
